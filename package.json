@@ -1,0 +1,25 @@
+{
+  "name": "48h Weather Forecast Watchface",
+  "author": "Víctor Martínez",
+  "version": "1.0.0",
+  "keywords": [
+    "pebble-app"
+  ],
+  "private": true,
+  "dependencies": {},
+  "pebble": {
+    "displayName": "48h Weather Forecast",
+    "uuid": "98aadff9-61d0-405c-a24f-c61b2522f712",
+    "projectType": "rocky",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "watchapp": {
+      "watchface": true
+    },
+    "targetPlatforms": [
+       "basalt",
+       "chalk",
+       "diorite"
+     ]
+   }
+}
