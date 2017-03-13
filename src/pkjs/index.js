@@ -1,6 +1,6 @@
 var API_KEY = 'b10ab596261f9eaf470c34a77676aeb1'
 
-var CACHE_TIME = 3600 * 1000 // 1 hour
+var CACHE_TIME = 60
 
 function fetch(url, resolve, reject){
   var xhr = new XMLHttpRequest()
@@ -19,9 +19,13 @@ function fetch(url, resolve, reject){
 
 function fetchAndCache(url, resolve, reject) {
   fetch(url, function(data) {
-    localStorage.setItem("expiresAt", Date.now() + CACHE_TIME)
-    localStorage.setItem("data", JSON.stringify(data))
-    resolve(data)
+    if (data) {
+      localStorage.setItem("expiresAt", Date.now() + CACHE_TIME)
+      localStorage.setItem("data", JSON.stringify(data))
+      resolve(data)
+    } else {
+      reject(new Error("no data"))
+    }
   }, reject)
 }
 
