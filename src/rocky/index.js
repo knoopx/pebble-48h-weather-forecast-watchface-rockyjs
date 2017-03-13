@@ -1,6 +1,6 @@
 var rocky = require('rocky')
 
-var TIME_FONT = '34px Bitham-numeric'
+var TIME_FONT = '38px bold numbers Leco-numbers'
 var DATE_FONT = '18px Gothic'
 var FORECAST_HOURS = 48
 var RING_GUTTER = 1.50
@@ -65,33 +65,25 @@ function getDateText(date) {
   return day + ' ' + month
 }
 
-function drawTime(ctx, x, y, text) {
-  ctx.font = TIME_FONT
-  ctx.fillText(text, x, y)
-}
-
-function drawDate(ctx, x, y, text) {
-  ctx.font = DATE_FONT
-  ctx.fillText(text, x, y)
-}
-
 function drawTimeAndDate(ctx, date) {
   var centerX = ctx.canvas.clientWidth / 2
   var centerY = ctx.canvas.clientHeight / 2
+
   var timeText = getTimeText(date)
   var dateText = getDateText(date)
 
   ctx.save()
-  ctx.font = TIME_FONT
+
   ctx.fillStyle = TEXT_COLOR
   ctx.textAlign = 'center'
 
+  ctx.font = TIME_FONT
   var timeBounds = ctx.measureText(timeText)
-  var timeY = centerY - timeBounds.height
-  var dateY = centerY
+  var timeY = centerY - (timeBounds.height / 2) - 10
+  ctx.fillText(timeText, centerX, timeY)
 
-  drawTime(ctx, centerX, timeY, timeText)
-  drawDate(ctx, centerX, dateY, dateText)
+  ctx.font = DATE_FONT
+  ctx.fillText(dateText, centerX, timeY + timeBounds.height)
 
   ctx.restore()
 }
